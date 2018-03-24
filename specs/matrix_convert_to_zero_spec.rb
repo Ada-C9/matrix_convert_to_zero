@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require_relative '../lib/matrix_convert_to_zero'
-
+require 'pry'
 # helper method for creating and initializing a matrix with all 1s
 def initialize_matrix(rows, columns)
   # create the matrix using the rows and columns
@@ -25,6 +25,8 @@ def verify_matrix(matrix, rows_array, columns_array)
 
   rows.times do |row|
     columns.times do |column|
+      # binding.pry
+
       if (rows_array.include?(row) || columns_array.include?(column))
         matrix[row][column].must_equal 0
       else
@@ -45,10 +47,8 @@ describe "matrix convert to zero" do
       matrix[2][4] = 0 # row 2, column 4
       rows_array = [1, 2]
       columns_array = [3, 4]
-
       # method call
       matrix_convert_to_0(matrix)
-
       # validation
       verify_matrix(matrix, rows_array, columns_array)
     end
@@ -65,10 +65,8 @@ describe "matrix convert to zero" do
       matrix[4][1] = 0 # row 4, column 1
       rows_array = [0, 1, 2, 3, 4]
       columns_array = [1]
-
       # method call
       matrix_convert_to_0(matrix)
-
       # validation
       verify_matrix(matrix, rows_array, columns_array)
     end
