@@ -7,7 +7,8 @@ def matrix_convert_to_0(matrix)
   rows = matrix.length
   columns = matrix[0].length
 
-  columns_with_zero = []
+  row_array = []
+  column_array = []
 
   r = 0
   while r < rows do
@@ -16,15 +17,8 @@ def matrix_convert_to_0(matrix)
     while c < columns do
 
       if matrix[r][c] == 0
-
-        i = 0
-        while i < rows do
-          matrix[r][i] = 0
-          i += 1
-        end
-        columns_with_zero << c
-        break
-
+        row_array << r
+        column_array << c
       end
 
       c += 1
@@ -33,11 +27,16 @@ def matrix_convert_to_0(matrix)
     r += 1
   end
 
-  columns_with_zero.each do |i|
-    r = 0
-    while r < rows do
-      matrix[r][i] = 0
-      r += 1
+  row_array.each do |r|
+    columns.times do |c|
+      matrix[r][c] = 0
+    end
+  end
+
+
+  column_array.each do |c|
+    rows.times do |r|
+      matrix[r][c] = 0
     end
   end
 
