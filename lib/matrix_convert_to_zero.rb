@@ -20,23 +20,38 @@ def initialize_matrix(rows, columns)
 end
 
 
-def matrix_convert_to_0(matrix)
-  # raise NotImplementedError
-  # loop through first [row][column] combination,
-  matrix.each do |row| # every "element" inside matrix represents a row
-    row.each do |column|
-      # if it is zero, reset that rows values to 0
-      if matrix[row][column] == 0
-        # matrix[row] = 0
-        # matrix[column] = 0
-        puts "Got a zero!"
-      end
+def matrix_convert_to_0(input_matrix)
+  rows = input_matrix.size
+  columns = input_matrix[0].size
 
+  rows.times do |row|
+    columns.times do |column|
+
+      if input_matrix[row][column] == 0
+        # setting rows to 0
+        columns.times do |result_col|
+          input_matrix[row][result_col] = -1 if (input_matrix[row][result_col] != 0)
+        end
+
+        rows.times do |result_row|
+          input_matrix[result_row][column] = -1 if (input_matrix[result_row][column] != 0)
+        end
+      end
     end
-    # and the columns value to 0
   end
 
+  rows.times do |row|
+    columns.times do |column|
+      if input_matrix[row][column] == -1
+        input_matrix[row][column] = 0
+      end
+    end
+  end
 end
 
-initialize_matrix(2,3)
-puts matrix_convert_to_0(matrix)
+# m = [[1,1,1],[1,0,1],[1,1,1],[1,1,0]]
+# m = [[1,1,1,1,1],[1,1,1,0,1],[1,1,1,1,0]]
+# m = [[1,0,1],[1,0,1],[1,0,1],[1,0,1],[1,0,1]]
+# matrix_convert_to_0(m)
+#
+# puts "#{m}"

@@ -3,19 +3,19 @@ require 'minitest/reporters'
 require_relative '../lib/matrix_convert_to_zero'
 
 # helper method for creating and initializing a matrix with all 1s
-def initialize_matrix(rows, columns)
-  # create the matrix using the rows and columns
-  matrix = Array.new(rows){Array.new(columns)}
-
-  # initialize the matrix
-  rows.times do |row|
-    columns.times do |column|
-      matrix[row][column] = 1
-    end
-  end
-
-  return matrix
-end
+# def initialize_matrix(rows, columns)
+#   # create the matrix using the rows and columns
+#   matrix = Array.new(rows){Array.new(columns)}
+#
+#   # initialize the matrix
+#   rows.times do |row|
+#     columns.times do |column|
+#       matrix[row][column] = 1
+#     end
+#   end
+#
+#   return matrix
+# end
 
 # helper method for verifying updated matrix
 def verify_matrix(matrix, rows_array, columns_array)
