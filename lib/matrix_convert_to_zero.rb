@@ -3,18 +3,20 @@
 # If any number is found to be 0, the method updates all the numbers in the
 # corresponding row as well as the corresponding column to be 0.
 # Time complexity: O(rows * columns) - the number of times the nested loop statements get executed
-# Space complexity: O(1) - rows and columns are auxiliary variables that won't change as matrix size changes
+# Space complexity: O(rows + columns) - additional storage is needed to keep track of which rows and which columns need to convert to zero
 def matrix_convert_to_0(matrix)
   rows = matrix.length
   columns = matrix[0].length
-  # if any column in the row is 0, make the first column 0
-  # if any row in the column is 0, make the first row 0
-  # by using the first row and first column in the matrix, save on additional space usage
+  # additional storage to keep track of which rows to convert to zero
+  rows_tracking = Array.new(rows, 1)
+  # additional storage to keep track of which columns to convert to zero
+  columns_tracking = Array.new(columns, 1)
+
   rows.times do |row|
     columns.times do |column|
       if matrix[row][column] == 0
-        matrix[0][column] = 0
-        matrix[row][0] = 0
+        columns_tracking[column] = 0
+        rows_tracking[row] = 0
       end
     end
   end
@@ -22,7 +24,7 @@ def matrix_convert_to_0(matrix)
   # if the corresponding 0th row, or 0th column has value of 0, make it 0
   rows.times do |row|
     columns.times do |column|
-      if matrix[0][column] == 0 || matrix[row][0] == 0
+      if columns_tracking[column] == 0 || rows_tracking[row] == 0
         matrix[row][column] = 0
       end
     end
